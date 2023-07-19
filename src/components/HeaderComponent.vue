@@ -1,15 +1,14 @@
 <script>
-export default {
-    name: "HeaderComponent",
-    data() {
-        return {
+    export default {
 
-        }
-    },
-    methods: {
+        name: "HeaderComponent",
 
+        data() {
+            return {}
+        },
+
+        methods: {}
     }
-}
 </script>
 
 <template>

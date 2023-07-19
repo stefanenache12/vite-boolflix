@@ -1,15 +1,16 @@
 <script>
-export default {
-    name: "",
-    data() {
-        return {
+    export default {
+
+        name: "",
+
+        data() {
+            return {}
+        },
+        
+        methods: {
 
         }
-    },
-    methods: {
-
     }
-}
 </script>
 
 <template>

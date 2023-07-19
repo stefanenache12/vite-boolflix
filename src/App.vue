@@ -52,9 +52,9 @@
 </script>
 
 <template>
-    <HeaderComponent  @search="performSearch()" />
+    <HeaderComponent  @search="performSearch()" class="text-center p-4"/>
 
-    <MainComponent />
+    <MainComponent class="text-center p-4"/>
 </template>
 
 <style lang="scss">

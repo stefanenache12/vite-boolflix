@@ -1,10 +1,14 @@
 <script>
+import { store } from '../store.js';
+
     export default {
 
         name: "HeaderComponent",
 
         data() {
-            return {}
+            return {
+                store
+            }
         },
 
         methods: {}
@@ -13,7 +17,10 @@
 
 <template>
     <header>
-        HEADER
+        <form action="" @submit.prevent="$emit('search')">
+            <input v-model="store.searchText" type="text" placeholder="Search movie by name...">
+            <button type="submit">Cerca</button>
+        </form>
     </header>
 </template>
 

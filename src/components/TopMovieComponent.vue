@@ -4,9 +4,7 @@
         name: "TopMovieCard",
 
         data() {
-            return {
-                
-            }
+            return {}
         },
         props: {
                 topmovie: {

@@ -1,5 +1,5 @@
 <script>
-import { store } from '../store.js';
+    import { store } from '../store.js';
 
     export default {
 
@@ -60,7 +60,6 @@ import { store } from '../store.js';
             padding: 2px;
             border: none;
         }
-        
     }
     
 </style>

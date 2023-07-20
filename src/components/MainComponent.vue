@@ -27,20 +27,6 @@
             }
         },
         computed: {
-            displayStars() {
-                return (voteAverage) => {
-                    const maxStars = 5;
-                    const numberOfStars = Math.round(voteAverage / 2);
-                    const fullStars = '<i class="fa fa-star"></i>'.repeat(numberOfStars);
-                    
-                    let remainingStars = '';
-                    for (let i = numberOfStars + 1; i <= maxStars; i++) {
-                        remainingStars += '<i class="fa-regular fa-star"></i>';
-                    }
-
-                    return fullStars + remainingStars;
-                };
-            },
             topMovies() {
                 return this.store.topMovies;
             },

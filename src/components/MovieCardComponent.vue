@@ -4,9 +4,7 @@
         name: "MovieCard",
 
         data() {
-            return {
-                
-            }
+            return {}
         },
         props: {
                 movie: {
@@ -63,12 +61,11 @@
 </script>
 
 <template>
-    
-
     <div class="flip-card">
         <div class="flip-card-inner">
                 <div class="flip-card-front">
-                    <img :src="`https://image.tmdb.org/t/p/w342/${movie.poster_path}`" alt="Avatar">
+                    <img v-if="(movie.poster_path != null)" :src="`https://image.tmdb.org/t/p/w342/${movie.poster_path}`" alt="Avatar">
+                    <img v-else src="src/img/booflixlogo.png" alt="" style="width: 100%;">
                 </div>
             <div class="flip-card-back">
                 <h1>{{movie.title}}</h1> 
@@ -81,7 +78,6 @@
             </div>
         </div> 
     </div>
-    
 </template>
 
 <style lang="scss" scoped>

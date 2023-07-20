@@ -14,6 +14,7 @@
         data() {
             return {
                 store,
+                loadingLogo: true,
             };
         },
         methods: {
@@ -25,14 +26,12 @@
                 })
                      .then(response => {
                         this.store.movies = response.data.results;
-                        console.log('movies',this.store.movies)
                     })   
             },
             getTopRatedMovies(){
                 axios.get('https://api.themoviedb.org/3/movie/top_rated?api_key=5e1982f0fc678db083147fd271708018&language=en')
                      .then(response => {
                         this.store.topMovies = response.data.results;
-                        console.log(this.store.topMovies)
                     })   
             },
             getSeriesResults(){
@@ -43,29 +42,47 @@
                 })
                      .then(response => {
                         this.store.series = response.data.results;
-                        console.log('SERIE',this.store.series)
                     })   
             },
             performSearch() {
                 this.getMoviesResults();
                 this.getSeriesResults();
                 store.searchPerformed = true;
-            } 
+            },
+            hideLoadingLogo() {
+                this.loadingLogo = false;
+            },
         },
         created() {
             this.getMoviesResults();
             this.getSeriesResults();
-            this.getTopRatedMovies()
+            this.getTopRatedMovies();
+            setTimeout(this.hideLoadingLogo, 3000);
         }
     };
 </script>
 
 <template class="app">
-    <HeaderComponent  @search="performSearch()" class="text-center p-3 sticky-top"/>
-
-    <MainComponent class="text-center pb-5"/>
+    <div v-if="loadingLogo" class="loading-screen">
+        <h1>BOOFLIX</h1>
+    </div>
+    <div v-else>
+        <HeaderComponent  @search="performSearch()" class="text-center p-3 sticky-top"/>
+        <MainComponent class="text-center pb-5"/>
+    </div>
 </template>
 
 <style lang="scss">
     @use "assets/scss/main";
+    .loading-screen {
+        text-align: center;
+        h1 {
+            color: #db0000;
+            font-size: 10rem;
+            margin-top: 150px;
+        }
+        h1:hover {
+            scale: 1.2;
+        }
+    }
 </style>

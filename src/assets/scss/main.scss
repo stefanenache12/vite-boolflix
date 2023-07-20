@@ -2,28 +2,27 @@
 @use "partials/variables" as *;
 @use "partials/mixins" as *;
 
-// Import all of Bootstrap's CSS
 @import "bootstrap/scss/bootstrap";
 
 body {
     background-color: black;
     width: 100%;
     overflow-x: hidden;
-    
 }
 
 h1 {
-    color: 	#ffffff;
+    color: 	#868686;
 }
 
 .non-scroll-container {
     width: 100%;
     position: relative;
+
     .scroll-container {
         display: flex;
         overflow: hidden;
-        
     }
+
     #scrollButtonright {
       position: absolute;
       top: 50%;
@@ -37,11 +36,13 @@ h1 {
       font-size: 14px;
       border-radius: 4px;
       vertical-align: middle;
+
         h1 {
             margin: 0;
             line-height: 1;
         }
     }
+
     #scrollButtonleft {
       position: absolute;
       top: 50%;
@@ -54,10 +55,10 @@ h1 {
       cursor: pointer;
       font-size: 14px;
       border-radius: 4px;
-            h1 {
-                margin: 0;
-                line-height: 1;
-            }
+        h1 {
+            margin: 0;
+            line-height: 1;
+        }
     }
     
     #scrollButtonleft:hover {

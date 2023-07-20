@@ -66,7 +66,8 @@
     <div class="flip-card">
         <div class="flip-card-inner">
                 <div class="flip-card-front">
-                    <img :src="`https://image.tmdb.org/t/p/w342/${serie.poster_path}`" alt="Avatar" style="width:100%;">
+                    <img v-if="(serie.poster_path != null)" :src="`https://image.tmdb.org/t/p/w342/${serie.poster_path}`" alt="Avatar" style="width:100%;">
+                    <img v-else src="src/img/booflixlogo.png" alt="" style="width: 100%;">
                 </div>
             <div class="flip-card-back">
                 <h1>{{serie.name}}</h1> 
@@ -79,7 +80,6 @@
             </div>
         </div> 
     </div>
-    
 </template>
 
 <style lang="scss" scoped>

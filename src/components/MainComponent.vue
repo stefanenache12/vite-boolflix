@@ -1,5 +1,9 @@
 <script>
     import { store } from '../store.js';
+    import MovieCardComponent from './MovieCardComponent.vue';
+    import SerieCardComponent from './SerieCardComponent.vue';
+    import TopMovieComponent from './TopMovieComponent.vue';
+    
     export default {
         name: "MainComponent",
         data() {
@@ -7,9 +11,19 @@
                 store,
             }
         },
+        components:{
+            MovieCardComponent,
+            SerieCardComponent,
+            TopMovieComponent
+        },
         methods: {
-            getVote(){
-                
+            scroll(container,direction) {
+                const scrollAmount = 380;
+                if (direction === "left") {
+                    this.$refs[container].scrollBy(-scrollAmount, 0);
+                } else if (direction === "right") {
+                    this.$refs[container].scrollBy(scrollAmount, 0);
+                }
             }
         },
         computed: {
@@ -27,86 +41,56 @@
                     return fullStars + remainingStars;
                 };
             },
+            topMovies() {
+                return this.store.topMovies;
+            },
         },
     }
 </script>
 
 <template>
     <main>
-        <div class="row">
-            <div class="col-2 p-3 bg-warning m-2" 
-                v-for="movie in store.movies">
-                <div>
-                    <img :src="`https://image.tmdb.org/t/p/w342/${movie.poster_path}`" alt="">
+        <div class="row justify-content-center">
+
+            <div class="non-scroll-container pt-5 pb-5" v-if="(store.searchPerformed == true & store.movies.length > 0)">
+                <h1>MOVIES</h1>
+                <div class="scroll-container" ref="scrollContainerMovies">
+                    <div class="col-3" 
+                        v-for="movie in store.movies.slice(0,6)">
+                        <MovieCardComponent :movie="movie"/>
+                    </div>
                 </div>
-                <div>
-                    <h1>
-                        <strong>Titolo:</strong>{{movie.title}}
-                    </h1>
+                <button id="scrollButtonleft" @click="scroll('scrollContainerMovies','left')"><h1> &lt; </h1></button>
+                <button id="scrollButtonright" @click="scroll('scrollContainerMovies','right')"> <h1>  > </h1></button>
+            </div>
+
+            <div class="non-scroll-container pt-5 pb-5" v-if="(store.searchPerformed == true & store.series.length > 0)">
+                <h1>SERIES</h1>
+                <div class="scroll-container" ref="scrollContainerSeries">
+                    <div class="col-3" 
+                        v-for="serie in store.series.slice(0,6)">
+                        <SerieCardComponent :serie="serie" />
+                    </div>
                 </div>
-                <div>
-                    <h2>
-                        Titolo Originale: {{movie.original_title}}
-                    </h2>
-                </div>
-                <div>
-                    <h3>
-                        Lingua: <img class="flag" :src="`src/img/flags/flag-${movie.original_language}.jpg`" alt="">
-                    </h3>
-                </div>
-                <div>
-                    <h4>
-                        <span v-html="displayStars(movie.vote_average)"></span>
-                    </h4>
+                <button id="scrollButtonleft" @click="scroll('scrollContainerSeries','left')"><h1> &lt; </h1></button>
+                <button id="scrollButtonright" @click="scroll('scrollContainerSeries','right')"> <h1>  > </h1></button>
+            </div>
+
+            <div class="non-scroll-container">
+                <h1>TOP RATED MOVIES</h1>
+                <div class="scroll-container" ref="scrollContainerTopMovies">
+                    <div class="col-3" v-for="topmovie in topMovies.slice(0, 9)">
+                        <TopMovieComponent  :topmovie="topmovie"/>
+                    </div>
+                    <button id="scrollButtonleft" @click="scroll('scrollContainerTopMovies','left')"><h1> &lt; </h1></button>
+                    <button id="scrollButtonright" @click="scroll('scrollContainerTopMovies','right')"> <h1>  > </h1></button>
                 </div>
             </div>
 
-            <div class="col-2 p-3 bg-primary m-2" 
-                    v-for="serie in store.series">
-                <div>
-                    <img :src="`https://image.tmdb.org/t/p/w342/${serie.poster_path}`" alt="">
-                </div>
-                <div>
-                    <h1>
-                        <strong>Titolo:</strong>{{serie.name}}
-                    </h1>
-                </div>
-                <div>
-                    <h2>
-                        Titolo Originale: {{serie.original_name}}
-                    </h2>
-                </div>
-                <div>
-                    <h3>
-                        Lingua: <img class="flag" :src="`src/img/flags/flag-${serie.original_language}.jpg`" alt="">
-                    </h3>
-                </div>
-                <div>
-                    <h4>
-                        <span v-html="displayStars(serie.vote_average)"></span>
-                    </h4>
-                </div>
-            </div>
         </div>
     </main>
 </template>
 
 <style lang="scss" scoped>
-@use "../assets/scss/partials/variables.scss" as *;
-
-img {
-    width: 100%;
-}
-.flag {
-    width: 20px;
-}
-
-.active {
-    display: block;
-}
-
-.hidden {
-    display: none;
-}
-
+    @use "../assets/scss/partials/variables.scss" as *;
 </style>

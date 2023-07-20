@@ -4,3 +4,68 @@
 
 // Import all of Bootstrap's CSS
 @import "bootstrap/scss/bootstrap";
+
+body {
+    background-color: black;
+    width: 100%;
+    overflow-x: hidden;
+    
+}
+
+h1 {
+    color: 	#ffffff;
+}
+
+.non-scroll-container {
+    width: 100%;
+    position: relative;
+    .scroll-container {
+        display: flex;
+        overflow: hidden;
+        
+    }
+    #scrollButtonright {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 10px;
+      background-color: transparent;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-size: 14px;
+      border-radius: 4px;
+      vertical-align: middle;
+        h1 {
+            margin: 0;
+            line-height: 1;
+        }
+    }
+    #scrollButtonleft {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 10px;
+      background-color: transparent;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-size: 14px;
+      border-radius: 4px;
+            h1 {
+                margin: 0;
+                line-height: 1;
+            }
+    }
+    
+    #scrollButtonleft:hover {
+        scale: 1.1;
+        border: 2px solid white;
+    }
+    #scrollButtonright:hover {
+        scale: 1.1;
+        border: 2px solid white;
+    }
+}

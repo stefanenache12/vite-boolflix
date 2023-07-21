@@ -75,6 +75,11 @@
                 <h4>
                     <span style="color: #ffd700;" v-html="displayStars(movie.vote_average)"></span>
                 </h4>
+                <a :href="`https://www.youtube.com/results?search_query=trailer${movie.original_title}`" target="_blank">
+                    <h4>
+                        Trailer
+                    </h4>           
+                </a>
             </div>
         </div> 
     </div>
